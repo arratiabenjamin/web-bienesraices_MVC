@@ -37,7 +37,14 @@
             }
         }
 
-        public function show($view){
+        public function show($view, $datos){
+
+            //Iterar Datos
+            foreach($datos as $key => $value){
+                // "$$nombre" Significa Variable de Variable.
+                // En este caso se crean variables con nombres de llaves del Array Assoc.
+                $$key = $value;
+            }
 
             //ob_start Inicia el Almacenamiento en Memoria
             ob_start();
