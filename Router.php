@@ -38,6 +38,14 @@
         }
 
         public function show($view){
-            include __DIR__ . "/views/$view.php";
+
+            //ob_start Inicia el Almacenamiento en Memoria
+            ob_start();
+            include_once __DIR__ . "/views/$view.php"; //Esto se Almacena en Memoria
+
+            //Limpia la Memoria y Guarda lo que se Almaceno en Memoria Anteriormente
+            $contenido = ob_get_clean();
+
+            include_once __DIR__ . "/views/layout.php";
         }
     }
