@@ -11,10 +11,12 @@
         public static function index(Router $router){
 
             $propiedades = Propiedad::all();
+            $vendedores = Vendedor::all();
             $resultado = $_GET['resultado'] ?? null;
 
-            $router->show( "propiedades/admin", [
+            $router->show( "propiedades/index", [
                 'propiedades' => $propiedades,
+                'vendedores' => $vendedores,
                 'resultado' => $resultado
             ] );
         }

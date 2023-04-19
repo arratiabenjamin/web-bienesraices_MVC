@@ -3,6 +3,7 @@
     require_once __DIR__ . "/../includes/app.php";
     use MVC\Router;
     use Controllers\PropiedadController;
+    use Controllers\VendedorController;
 
     //Creacion de Router
     $router = new Router();
@@ -16,5 +17,11 @@
     $router->post('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
     $router->post('/propiedades/eliminar', [PropiedadController::class, 'eliminar']);
 
+    $router->get('/vendedores', [VendedorController::class, 'index']);
+    $router->get('/vendedores/crear', [VendedorController::class, 'crear']);
+    $router->post('/vendedores/crear', [VendedorController::class, 'crear']);
+    $router->get('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
+    $router->post('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
+    $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
     $router->validarUrl();
