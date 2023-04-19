@@ -2,7 +2,8 @@
 
 define('TEMPLATE_URL', __DIR__ . '/templates');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
-define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
+//DOCUMENT_ROOT - Devuelve ruta Root y asi se puede acceder facilmente a la carpeta.
+define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/imagenes/');
 
 //Include Templates
 function incluirTemplate( string $archivo, bool $inicio = false ) {
@@ -55,8 +56,20 @@ function mostrarMesajes($cod) {
             $mensaje = 'Eliminado Correctamente';
             break;
         default:
-            $mensaje = false;
+            $mensaje = null;
             break;
     }
     return $mensaje;
+}
+
+// Validacion de URL por ID Valido
+function validarRedireccionar($url) {
+    $id = $_GET['id'] ?? null;
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if(!$id) {
+        header("Location: $url");
+    }
+
+    return $id;
 }

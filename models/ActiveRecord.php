@@ -86,7 +86,7 @@ class ActiveRecord {
 
         if($resultado) {
             $this->eliminarImagen();
-            header('Location: /admin?resultado=1');
+            header('Location: /admin?resultado=3');
         }
     }
 

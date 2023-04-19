@@ -15,6 +15,9 @@
         public function get($url, $funcionAsoc){
             $this->rutasGET[$url] = $funcionAsoc;
         }
+        public function post($url, $funcionAsoc){
+            $this->rutasPOST[$url] = $funcionAsoc;
+        }
 
         //Validar si la Ruta actual Existe
         public function validarUrl(){
@@ -26,6 +29,8 @@
                 //Asignar Funcion Asociada a la Ruta Actual.
                 //Si no existe se asigna en null.
                 $fn = $this->rutasGET[$urlActual] ?? null;
+            }else{
+                $fn = $this->rutasPOST[$urlActual] ?? null;
             }
 
             //Verificacion
