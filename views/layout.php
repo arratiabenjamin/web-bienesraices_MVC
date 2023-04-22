@@ -40,11 +40,11 @@
                                     <img src="../build/img/icon-login.svg" alt="Icono Login">
                                 </a>
                             <?php elseif($auth) : ?>
-                                <a href="/admin/index" class="sesion loged">
+                                <a href="/admin" class="sesion loged">
                                     <img src="../build/img/icon-admin.svg" alt="Icono Admin">
                                 </a>
                                 
-                                <a href="/cerrar-sesion" class="sesion loged">
+                                <a href="/logout" class="sesion loged">
                                     <img src="../build/img/icon-cerrarsesion.svg" alt="Icono Cerrar Sesion">
                                 </a>
                             <?php endif; ?>

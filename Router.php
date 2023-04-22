@@ -21,8 +21,21 @@
 
         //Validar si la Ruta actual Existe
         public function validarUrl(){
+
+            //Almacenar Sesion
+            session_start();
+            $auth = $_SESSION['login'] ?? null;
+
+            //Rutas Protegidas
+            $rutasProtegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores', '/vendedores/crear', '/vendedores/ actualizar', '/vendedores/ eliminar',];
+
             $urlActual = $_SERVER['PATH_INFO'] ?? '/';
             $metodo = $_SERVER['REQUEST_METHOD'];
+
+            //Proteger Rutas
+            if(in_array($urlActual, $rutasProtegidas) && !$auth){
+                header('Location: /');
+            }
 
             //Guardar FuncAsoc
             if($metodo === 'GET'){
