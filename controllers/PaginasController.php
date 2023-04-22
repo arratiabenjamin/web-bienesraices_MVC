@@ -47,6 +47,7 @@
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
                 $datos = $_POST['contacto'];
+                $mensaje = null;
                 
                 //Creacion de Instancia PHPMailer.
                 $phpMailer = new PHPMailer();
@@ -73,14 +74,17 @@
                 //Definir Contenido.
                 $contenido = '<html>';
                 $contenido .= '<p>Nombre: ' . $datos['nombre'] . '</p>';
-                $contenido .= '<p>Email: ' . $datos['email'] . '</p>';
-                $contenido .= '<p>Telefono: ' . $datos['telefono'] . '</p>';
                 $contenido .= '<p>Mensaje: ' . $datos['mensaje'] . '</p>';
                 $contenido .= '<p>Interes: ' . $datos['tipoInteres'] . '</p>';
                 $contenido .= '<p>Precio/Presupuesto: $' . $datos['precio'] . '</p>';
-                $contenido .= '<p>Contacto: ' . $datos['contacto'] . '</p>';
-                $contenido .= '<p>Fecha: ' . $datos['fecha'] . '</p>';
-                $contenido .= '<p>Hora: ' . $datos['hora'] . '</p>';
+                $contenido .= '<br><p>Eligió ser contactado por ' . $datos['contacto'] . '</p>';
+                if($datos['contacto'] === 'telefono'){
+                    $contenido .= '<p>Telefono: ' . $datos['telefono'] . '</p>';
+                    $contenido .= '<p>Fecha: ' . $datos['fecha'] . '</p>';
+                    $contenido .= '<p>Hora: ' . $datos['hora'] . '</p>';
+                } else {
+                    $contenido .= '<p>Email: ' . $datos['email'] . '</p>';
+                }
                 $contenido .= '</html>';
 
 
@@ -89,15 +93,15 @@
 
                 //Comprobar si se envio.
                 if($phpMailer->send()) {
-                    echo 'Mensaje Enviado Correctamente.';
+                    $mensaje = 'Mensaje Enviado Correctamente.';
                 } else {
-                    echo 'Mensaje NO Enviado.';
+                    $mensaje = 'Mensaje NO Enviado, Intente Nuevamente.';
                 }
 
             }
 
             $router->show('paginas/contacto', [
-
+                'mensaje' => $mensaje
             ]);
         }
     }
